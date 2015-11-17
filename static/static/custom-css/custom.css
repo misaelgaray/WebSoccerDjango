@@ -1,0 +1,16 @@
+/*Logo liga mexicana de futbol BBVA*/
+#logofmf{
+        max-height: 30px;
+        display: inline;
+        max-width: 130px;
+      }
+
+/*Barra superior fixwed*/
+#nav-fix{
+	background: #C8C8C8;
+}
+
+/*Imagenes y Tabla de Lideres*/
+.lideres{
+	display: inline;
+}

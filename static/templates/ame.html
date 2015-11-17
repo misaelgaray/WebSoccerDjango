@@ -1,0 +1,99 @@
+{% extends 'index.html' %}
+{% load crispy_forms_tags %}
+
+{% block head %}
+	{{block.super}}
+{% endblock %}
+
+
+{% block nav %}
+	{{block.super}}
+{% endblock %}
+
+
+{% block sidebar %}
+	{{block.super}}
+{% endblock %}
+
+{% block dashboard %}
+
+	{% if error %}
+	<div class="alert alert-danger alert-dismissible" role="alert">
+  		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  		<strong>Hey!</strong> Hay un error en el formulario, checalo we
+	</div>
+	{% endif %}
+
+	<h2 class="sub-header">Estadisticas</h2>
+	 <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Logo</th>
+                  <th>Equipo</th>
+                  <th>puntos</th>
+                  <th>P_J</th>
+                  <th>P_G</th>
+                  <th>P_E</th>
+                  <th>P_P</th>
+                  <th>Goles</th>
+                </tr>
+              </thead>
+              <tbody>
+              	{% for equipos in equipo %}
+                <tr>
+                  <td><img class="img-responsive" src="/static/{{equipos.img_equipo}}"></td>
+                  <td>{{equipos.nombre_equipo}}</td>
+                  <td>{{equipos.puntos}}</td>
+                  <td>{{equipos.p_jugados}}</td>
+                  <td>{{equipos.p_ganados}}</td>
+                  <td>{{equipos.p_empatados}}</td>
+                  <td>{{equipos.p_perdidos}}</td>
+                  <td>{{equipos.goles_totales}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+     </table>
+    <h2 class="sub-header">Jugadores</h2>
+     <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>posicion</th>
+                  <th>edad</th>
+                  <th>goles</th>
+                  <th>T. Amarillas</th>
+                  <th>T. Rojas</th>
+                </tr>
+              </thead>
+              <tbody>
+              	{% for jugador in jugadores %}
+                <tr>
+                  <td>{{jugador.nombre_jugador}}</td>
+                  <td>{{jugador.posicion}}</td>
+                  <td>{{jugador.edad}}</td>
+                  <td>{{jugador.goles}}</td>
+                  <td>{{jugador.t_amarillas}}</td>
+                  <td>{{jugador.t_rojas}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+     </table>
+
+     <h2 class="sub-header">Agragar Jugadores</h2>
+     <div class="col-sm-6 col-md-6 col-lg-6">
+     	<form action="" method="post">{% csrf_token %}
+     	
+     		{{ form|crispy}}
+     		
+     		<div class="form-group">
+     			<input type="submit" class="btn btn-primary" value="Agregar">
+     		</div>
+     	</form>
+     </div>
+
+{% endblock %}
+
+
+{% block scripts %}
+	{{block.super}}
+{% endblock %}
